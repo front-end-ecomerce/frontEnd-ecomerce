@@ -27,6 +27,7 @@ function Header() {
             Shop
           </a>
 
+ 
           <a href="#" className="text-gray-500">
             About
           </a>
@@ -40,7 +41,7 @@ function Header() {
             9
           </span>
         </div>
-
+         
       </div>
     </header>
   );
