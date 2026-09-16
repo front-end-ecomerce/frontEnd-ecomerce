@@ -3,10 +3,12 @@ import {useState, useEffect} from "react";
 import { FiSearch } from "react-icons/fi";
 import { GiPriceTag } from 'react-icons/gi';
 
-const Shopping = () => {
+const Shopping = ({AddtoCart}) => {
 
     const [products, setProducts] = useState([])
     const [search, setSearch] = useState("")
+    
+
 
 
     const SearchProducts = products.filter((product) => 
@@ -16,14 +18,17 @@ const Shopping = () => {
 
 
 
-const FetchProduct =async () => {
+
+
+useEffect(() =>{
+    const FetchProduct =async () => {
 const response = await fetch("https://fakestoreapi.com/products")
 const data = await response.json()
 console.log(data)
+
 setProducts(data)
 }
 
-useEffect(() =>{
     FetchProduct();
 }, []);
 
@@ -86,7 +91,17 @@ useEffect(() =>{
                         {product.rating.rate}</p>
                     </div>
 
-                            
+                         <div className=" flex justify-center items-center">
+                        <button className=" rounded-lg bg-blue-600 px-8 py-4 font-medium text-white transition
+                         hover:bg-blue-700
+                          hover:scale-105
+                          hover:-translate-y-1
+                          hover:shadow-lg active:scale-95"
+                             
+                        onClick={AddtoCart}>
+                            add
+                        </button>
+                        </div>   
                 </div>
             ))}
             </div>

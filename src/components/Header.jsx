@@ -1,6 +1,6 @@
-import { ShoppingBag } from "lucide-react";
+import { Carton, ShoppingBag } from "lucide-react";
 
-function Header() {
+function Header({cartCount}) {
   return (
     <header className="h-[123px] bg-[#f8f7f3] border-b">
 
@@ -38,7 +38,7 @@ function Header() {
           <ShoppingBag size={27} />
 
           <span className="absolute -top-3 -right-3 bg-[#bd7049] text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">
-            9
+            {cartCount}
           </span>
         </div>
          
