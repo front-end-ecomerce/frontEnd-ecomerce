@@ -4,6 +4,7 @@ import Hero from "./components/Hero"
 import Shopping from "./components/Shopping";
 import Footer from "./components/Footer"
 import { useState } from "react";
+import About from "./About";
 
 function App() {
   const [cartCount, setCartCount] = useState(0);
@@ -15,9 +16,10 @@ function App() {
   return (
         
       <div className="">
-           <Header  CartCount={cartCount} />
+           <Header  cartCount={cartCount} />
         <Hero />
-        <Shopping AddToCart={AddtoCart} />
+        <Shopping AddtoCart={AddtoCart} />
+        <About/>
         <Footer/>
       </div>
     
