@@ -1,4 +1,5 @@
-import { Carton, ShoppingBag } from "lucide-react";
+import { Carton, Link2Off, ShoppingBag } from "lucide-react";
+import {Link} from "react-router-dom"
 
 function Header({cartCount}) {
   return (
@@ -19,18 +20,18 @@ function Header({cartCount}) {
 
         {/* Navbar */}
         <nav className="flex gap-10">
-          <a href="#" className="text-black">
+          <Link to="/Home" className="text-black">
             Home
-          </a>
+          </Link>
 
-          <a href="#" className="text-gray-500">
+          <Link to="/Shop" className="text-gray-500">
             Shop
-          </a>
+          </Link>
 
  
-          <a href="#" className="text-gray-500">
+          <Link to="/About" className="text-gray-500">
             About
-          </a>
+          </Link>
         </nav>
 
         {/* Cart */}
