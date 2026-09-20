@@ -1,73 +1,110 @@
-import { useState, useEffect } from "react";
+import React from 'react'
+import {useState, useEffect} from "react";
 import { FiSearch } from "react-icons/fi";
+import { GiPriceTag } from 'react-icons/gi';
 
-const Shopping = ({ AddtoCart }) => {
-  const [products, setProducts] = useState([])
-  const [search, setSearch] = useState("")
+const Shopping = ({AddtoCart}) => {
 
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-     .then(r => r.json())
-     .then(setProducts)
-  }, [])
+    const [products, setProducts] = useState([])
+    const [search, setSearch] = useState("")
+    
 
-  const filtered = products.filter(p =>
-    p.title.toLowerCase().includes(search.toLowerCase())
-  )
+
+
+    const SearchProducts = products.filter((product) => 
+    product.title.toLowerCase().includes(search.toLowerCase())
+    
+)
+
+
+
+
+
+useEffect(() =>{
+    const FetchProduct =async () => {
+const response = await fetch("https://fakestoreapi.com/products")
+const data = await response.json()
+console.log(data)
+
+setProducts(data)
+}
+
+    FetchProduct();
+}, []);
 
   return (
-    <div className="min-h-screen" style={{backgroundColor:'#FAF6F0'}}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-6 sm:py-12">
-
-        {/* HEADER - responsive */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-8 sm:mb-10">
-          <div>
-            <p className="text- sm:text- tracking-[0.2em] font-semibold mb-2" style={{color:'#8B6F5A'}}>THE COLLECTION</p>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight">Pieces worth keeping</h1>
-          </div>
-          <p className="text-xs sm:text-sm text-neutral-500 max-w-xs">
-            Everyday objects and wardrobe staples, chosen with care.
-          </p>
-        </div>
-
-        {/* SEARCH - responsive */}
-        <div className="flex justify-center mb-8 sm:mb-12">
-          <div className="relative w-full sm:max-w-md">
-            <FiSearch size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400" />
-            <input
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              placeholder="Search by product or category"
-              className="w-full bg-white border border-black/10 py-2.5 sm:py-3 pl-11 pr-4 text-xs sm:text-sm focus:outline-none focus:border-black/30"
-            />
-          </div>
-        </div>
-
-        {/* GRID - responsive */}
-        <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {filtered.map(p => (
-            <div key={p.id} className="bg-white group">
-              {/* Card image - yar oo responsive */}
-              <div className="relative flex justify-center items-center p-4 sm:p-6 h-48 sm:h-52" style={{backgroundColor:'#F5F0E8'}}>
-                <span className="absolute left-2 sm:left-3 top-2 sm:top-3 text-white text- sm:text- tracking-widest px-2 py-1" style={{backgroundColor:'#1E3A2F'}}>NEW</span>
-                <img src={p.image} alt={p.title} className="h-24 sm:h-32 object-contain group-hover:scale-105 transition duration-300" />
-              </div>
-
-              <div className="p-3 sm:p-4">
-                <p className="text-xs sm:text-sm font-medium line-clamp-1">{p.title}</p>
-                <p className="text-xs sm:text-sm mt-1" style={{color:'#A4714B'}}>${p.price}</p>
-
-                <button
-                  onClick={() => AddtoCart(p)}
-                  className="mt-3 sm:mt-4 w-full text-white text- sm:text- tracking-[0.15em] uppercase font-medium py-2.5 sm:py-3 hover:bg-black transition"
-                  style={{backgroundColor:'#1E3A2F'}}
-                >
-                  Add to bag
-                </button>
-              </div>
+    <div id="shopping" className="min-h-screen bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-6 md:px-16">
+        <div className="flex items-center gap-16 p-4">
+            <div className="w-1/2 pl-24 flex flex-col p-8 gap-6">
+        <p className="text-xs text-[#AE9885] tracking-[0.12em] font-semibold">
+            THE COLLECTION
+            </p>
+            <h1 className="text-4xl text-black">Pieces worth keeping</h1>
             </div>
-          ))}
+            <div className="w-1/2 pl-26">
+                <p className="max-w-sm text-xs text-gray-600">
+                    Everyday objects and wardrobe staples, chosen with care.</p>
+            </div>
+            </div>
+
+       <div className="flex justify-center items-center pb-4">  
+        <div className="relative w-full max-w-md">
+        <FiSearch 
+        size={20}
+        className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 "/>
+
+        <input 
+        className="w-full rounded-lg border border-gray-300 py-2 pl-10 pr-4 
+        focus:outline-none focus:ring-2 focus:ring-blue-500" 
+        placeholder="search by product or category"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}/>
         </div>
+        <h2>{search}</h2>
+
+        </div>
+        <div className="grid grid-cols-1 gap-x-2 gap-y-6 sm:grid-cols-2 lg:grid-cols-4"> 
+            
+
+            {SearchProducts.map((product) => (
+                <div className="w-64 bg-white" 
+                key={product.id}>
+                    
+                   <div className=" relative flex justify-center bg-gray-200 p-6">
+                    <span className="absolute left-3 top-3 z-10 bg-[#26332f] px-2 py-1 text-[9px] font-semibold tracking-wider text-white">
+                        NEW</span>
+                     <img className="w-full h-48 object-contain transition duration-300 hover:-translate-y-2"
+                    src={product.image}
+                    alt={product.title}
+                    />
+                   
+                    </div>
+                     <div className="px-4 py-3">
+                    <p className="text-sm font-semibold text-gray-600 line-clamp-1">
+                        {product.title}</p>
+                    <p className="mt-1 text-sm font-medium text-[#AE9885]"> 
+                        ${product.price}</p>
+                    <p className="mt-1 text-sm font-medium text-[#AE9885]">
+                            {product.category}</p>
+                    <p className="mt-1 text-sm font-medium text-[#AE9885]">
+                        {product.rating.rate}</p>
+                    </div>
+
+                         <div className=" flex justify-center items-center">
+                        <button className=" rounded-lg bg-blue-600 px-8 py-4 font-medium text-white transition
+                         hover:bg-blue-700
+                          hover:scale-105
+                          hover:-translate-y-1
+                          hover:shadow-lg active:scale-95"
+                             
+                        onClick={AddtoCart}>
+                            add
+                        </button>
+                        </div>   
+                </div>
+            ))}
+            </div>
 
       </div>
     </div>
