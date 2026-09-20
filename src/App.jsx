@@ -1,9 +1,10 @@
-// App.jsx
+
 import Header from "./components/Header"
 import Hero from "./components/Hero"
 import Shopping from "./components/Shopping";
 import Footer from "./components/Footer"
 import { useState } from "react";
+import About from "./About";
 import {Routes, Route} from "react-router-dom";
 
 function App() {
@@ -19,7 +20,6 @@ function App() {
 
            <Header  cartCount={cartCount} />
            
-
            <Routes>
             <Route path="/" element={
               <>
@@ -33,7 +33,7 @@ function App() {
             <Route path="shop" element={<Shopping AddtoCart={AddtoCart} />}/>
        
 
-            <Route path="about" element={<about/>}/>
+            <Route path="About" element={<About/>}/>
 
         </Routes>
         <Footer/>
