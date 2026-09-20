@@ -92,8 +92,8 @@ setProducts(data)
                     </div>
 
                          <div className=" flex justify-center items-center">
-                        <button className=" rounded-lg bg-blue-600 px-8 py-4 font-medium text-white transition
-                         hover:bg-blue-700
+                        <button className="  w-[124px] rounded-lg bg-[#A56345] px-8 py-4 font-medium text-white transition
+                         hover:bg-[#bd7049]
                           hover:scale-105
                           hover:-translate-y-1
                           hover:shadow-lg active:scale-95"

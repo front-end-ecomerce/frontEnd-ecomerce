@@ -20,7 +20,7 @@ function Header({cartCount}) {
 
         {/* Navbar */}
         <nav className="flex gap-10">
-          <Link to="/Home" className="text-black">
+          <Link to="/" className="text-black">
             Home
           </Link>
 
