@@ -4,8 +4,12 @@ import Hero from "./components/Hero"
 import Shopping from "./components/Shopping";
 import Footer from "./components/Footer"
 import { useState } from "react";
-import About from "./About";
+
 import {Routes, Route} from "react-router-dom";
+
+import Home from "./pages/Home"
+import Shop from "./pages/Shop"
+import Aboutpage from "./pages/Aboutpage"
 
 function App() {
   const [cartCount, setCartCount] = useState(0);
@@ -16,26 +20,13 @@ function App() {
 
   return (
         
-      <div className="">
-
+     <div className="">
            <Header  cartCount={cartCount} />
-           
-           <Routes>
-            <Route path="/" element={
-              <>
-              <Hero />
-              
-            <Shopping AddtoCart={AddtoCart} />
-              </>
-
-            } />
-
-            <Route path="shop" element={<Shopping AddtoCart={AddtoCart} />}/>
-       
-
-            <Route path="About" element={<About/>}/>
-
-        </Routes>
+         <Routes>
+    <Route path="/" element={<Home AddtoCart={AddtoCart} />} />
+    <Route path="/shop" element={<Shop AddtoCart={AddtoCart} />} />
+    <Route path="/about" element={<Aboutpage />} />
+  </Routes>
         <Footer/>
       </div>
     
